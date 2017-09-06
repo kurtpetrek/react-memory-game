@@ -66,42 +66,42 @@ export default class MemoryGame extends Component {
         prevState.clicks++;
         return prevState;
       }, () => {
-        setTimeout(this.testSelectedCards, 1000);
+        if (this.state.selectedCards.length === 2) {
+          setTimeout(this.testSelectedCards, 1000);
+        }
       })
     }
   }
 
   testSelectedCards = () => {
-    if (this.state.selectedCards.length === 2) {
-      let cardsMatch = false;
-      if (this.state.selectedCards[0].color === this.state.selectedCards[1].color && this.state.selectedCards[0].index !== this.state.selectedCards[1].index) {
-        cardsMatch = true;
-      }
-      if (cardsMatch) {
-        this.setState((prevState) => {
-          prevState.matchedCards.push(prevState.selectedCards[0].color);
-          prevState.selectedCards = [];
-          prevState.canPickCard = true;
-          if (prevState.matchedCards.length >= prevState.playingCards.length / 2 ) {
-            if (prevState.bestGame === null) {
-              prevState.bestGame = prevState.clicks;
-              console.log('High Score!');
-            } else if (prevState.bestGame < prevState.clicks) {
-              prevState.bestGame = prevState.clicks;
-              console.log('High Score!');
-            }
-            console.log("Win!");
-            prevState.hasWonGame = true;
+    let cardsMatch = false;
+    if (this.state.selectedCards[0].color === this.state.selectedCards[1].color && this.state.selectedCards[0].index !== this.state.selectedCards[1].index) {
+      cardsMatch = true;
+    }
+    if (cardsMatch) {
+      this.setState((prevState) => {
+        prevState.matchedCards.push(prevState.selectedCards[0].color);
+        prevState.selectedCards = [];
+        prevState.canPickCard = true;
+        if (prevState.matchedCards.length >= prevState.playingCards.length / 2 ) {
+          if (prevState.bestGame === null) {
+            prevState.bestGame = prevState.clicks;
+            console.log('High Score!');
+          } else if (prevState.bestGame < prevState.clicks) {
+            prevState.bestGame = prevState.clicks;
+            console.log('High Score!');
           }
-          return prevState;
-        });
-      } else {
-        this.setState((prevState) => {
-          prevState.selectedCards = [];
-          prevState.canPickCard = true;
-          return prevState;
-        });
-      }
+          console.log("Win!");
+          prevState.hasWonGame = true;
+        }
+        return prevState;
+      });
+    } else {
+      this.setState((prevState) => {
+        prevState.selectedCards = [];
+        prevState.canPickCard = true;
+        return prevState;
+      });
     }
   };
 
