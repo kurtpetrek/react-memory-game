@@ -107,12 +107,10 @@ export default class MemoryGame extends Component {
           if (prevState.bestGame === null) {
             prevState.bestGame = prevState.clicks;
             prevState.newHighScore = true;
-            console.log('High Score!');
           } else if (prevState.bestGame > prevState.clicks) {
             prevState.bestGame = prevState.clicks;
-            console.log('High Score!');
           }
-          console.log("Win!");
+          window.scrollTo(0, 0);
           prevState.hasWonGame = true;
         }
         return prevState;
@@ -156,6 +154,8 @@ export default class MemoryGame extends Component {
           handleNumberOfCardsChange={this.changeNumberOfCards}
           numberOfCards={this.state.numberOfCards}
           maxCards={this.state.allCards.length}
+          hasWonGame={this.state.hasWonGame}
+          newHighScore={this.state.newHighScore}
         />
       )
     }

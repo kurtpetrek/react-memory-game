@@ -13,13 +13,18 @@ export default function GameBoard(props) {
     restartGame,
     handleNumberOfCardsChange,
     numberOfCards,
-    maxCards
+    maxCards,
+    hasWonGame,
+    newHighScore
   } = props;
 
   let bestGameText = null;
   if (bestGame !== null) {
     bestGameText = `Best Game: ${bestGame}` ;
   }
+
+  let hasWonGameText = hasWonGame ? <h2 className="center-text won-game-text">You Won!</h2> : null;
+  let newHighScoreText = newHighScore ? <h2 className="center-text new-high-score-text">New High Score!</h2> : null;
 
   let cards = playingCards.map((color, index) => {
     let flipped = false;
@@ -49,6 +54,8 @@ export default function GameBoard(props) {
   return (
     <div className="game-board">
       <h1>Color Memory</h1>
+      {hasWonGameText}
+      {newHighScoreText}
       <div className="header-info">
         <div className="header-info__scores">
           <h2>Clicks: {props.clicks}</h2>
@@ -57,12 +64,14 @@ export default function GameBoard(props) {
         <div className="header-info__options">
           <div className="header-info__text">
             Number of Cards:
-            <select onChange={changeCardNumber} value={numberOfCards}>
-            <option value={maxCards}>{(maxCards) * 2}</option>
-              <option value={maxCards / 4 * 3}>{(maxCards / 4 * 3) * 2}</option>
-              <option value={maxCards / 2}>{(maxCards / 2) * 2}</option>
-              <option value={maxCards / 4}>{(maxCards / 4) * 2}</option>
-            </select>
+            <span className="select-container">
+              <select onChange={changeCardNumber} value={numberOfCards}>
+                <option value={maxCards}>{(maxCards) * 2}</option>
+                <option value={maxCards / 4 * 3}>{(maxCards / 4 * 3) * 2}</option>
+                <option value={maxCards / 2}>{(maxCards / 2) * 2}</option>
+                <option value={maxCards / 4}>{(maxCards / 4) * 2}</option>
+              </select>
+            </span>
           </div>
           <Button
             handleClick={restartGame}
