@@ -87,7 +87,7 @@ export default class MemoryGame extends Component {
           if (prevState.bestGame === null) {
             prevState.bestGame = prevState.clicks;
             console.log('High Score!');
-          } else if (prevState.bestGame < prevState.clicks) {
+          } else if (prevState.bestGame > prevState.clicks) {
             prevState.bestGame = prevState.clicks;
             console.log('High Score!');
           }
