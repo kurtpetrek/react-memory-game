@@ -394,7 +394,8 @@ template {
   box-sizing: border-box; }
 
 html {
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(to top, rgba(252, 234, 187, 0.4), rgba(248, 181, 0, 0.2)); }
 
 h1 {
   font-family: 'Righteous', cursive;
@@ -432,8 +433,9 @@ h1 {
     animation: move-start-screen-background 5s infinite alternate-reverse linear; }
 
 .game-board {
-  background: linear-gradient(to top, rgba(252, 234, 187, 0.4), rgba(248, 181, 0, 0.2));
   min-height: 100vh;
+  max-width: 1400px;
+  margin: auto;
   overflow: hidden; }
 
 .header-info {
@@ -506,6 +508,9 @@ h1 {
 
 .tempt-user {
   animation: tempt-user infinite 15s alternate; }
+
+.tempt-user--reverse {
+  animation: tempt-user infinite 25s alternate-reverse; }
 
 @keyframes tempt-user {
   0%, 20%, 43%, 50%, 62%, 76%, 88%, 100% {

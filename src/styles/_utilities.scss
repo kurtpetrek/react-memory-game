@@ -6,6 +6,10 @@
   animation: tempt-user infinite 15s alternate;
 }
 
+.tempt-user--reverse {
+  animation: tempt-user infinite 25s alternate-reverse;
+}
+
 @keyframes tempt-user {
   0%, 20%, 43%, 50%, 62%, 76%, 88%, 100% {
     transform: scale(1) rotate(0deg);

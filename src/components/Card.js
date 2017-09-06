@@ -2,11 +2,13 @@ import React from 'react';
 
 export default function Card(props) {
   let shownColor = props.flipped ? props.color : 'white';
+  let animated = props.flipped ? null : 'tempt-user--reverse';
   let cardColor = props.color;
   let index = props.index;
 
   const cardStyle = {
-    background: shownColor
+    background: shownColor,
+    animationDelay: Math.random() * -1 + 's'
   };
 
   function testCard(){
@@ -17,7 +19,7 @@ export default function Card(props) {
     <div
       style={cardStyle}
       onClick={testCard}
-      className="game-card"
+      className={'game-card ' + animated}
     ></div>
   )
 }

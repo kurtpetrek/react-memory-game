@@ -1,6 +1,7 @@
 .game-board {
-  background: linear-gradient(to top, rgba(#fceabb, .4), rgba(#f8b500, .2));
   min-height: 100vh;
+  max-width: 1400px;
+  margin: auto;
   overflow: hidden;
 }
 

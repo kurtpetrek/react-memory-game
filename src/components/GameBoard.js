@@ -48,7 +48,7 @@ export default function GameBoard(props) {
 
   return (
     <div className="game-board">
-      <h1 className="tempt-user">Color Memory</h1>
+      <h1>Color Memory</h1>
       <div className="header-info">
         <div className="header-info__scores">
           <h2>Clicks: {props.clicks}</h2>
