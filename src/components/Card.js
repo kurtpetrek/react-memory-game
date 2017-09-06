@@ -15,7 +15,6 @@ export default function Card(props) {
   };
 
   function testCard(){
-    console.log(index);
     props.clickHandler(cardColor, index);
   }
 

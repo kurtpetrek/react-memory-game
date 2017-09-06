@@ -7,7 +7,18 @@ export default class MemoryGame extends Component {
     super();
     this.state = {
       allCards: [
-        'red', 'green', 'blue', 'purple', 'pink', 'yellow', 'orange', 'teal', '#00D8FF', '#12252F', '#417797', '#5D6771'
+        '#DE3C4B',
+        '#87F5FB',
+        '#C09BD8',
+        '#EBC3DB',
+        '#F6FEAA',
+        '#C7DFC5',
+        '#EE964B',
+        '#718F94',
+        '#545775',
+        '#72B01D',
+        '#283845',
+        '#F29559'
       ],
       startingCards: [],
       numberOfCards: 10,
@@ -26,7 +37,7 @@ export default class MemoryGame extends Component {
   startGame = () => {
     this.setState(function(prevState){
       function Shuffle(o) {
-      	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i, 10), x = o[--i], o[i] = o[j], o[j] = x);
       	return o;
       };
       prevState.startingCards = [...prevState.allCards, ...prevState.allCards].slice(0, prevState.numberOfCards);
