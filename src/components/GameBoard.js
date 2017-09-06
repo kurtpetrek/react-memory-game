@@ -2,11 +2,6 @@ import React from 'react';
 import Card from './Card';
 import Button from './Button';
 
-let cardBoardStyle = {
-  display: 'flex',
-  flexWrap: 'wrap'
-};
-
 export default function GameBoard(props) {
   let {
     playingCards,
@@ -49,29 +44,37 @@ export default function GameBoard(props) {
 
   function changeCardNumber(e) {
     handleNumberOfCardsChange(e.target.value);
-    // console.log(e.target.value);
   }
 
   return (
-    <div>
-      <h1>Memory Patterns</h1>
-      Number of Cards:
-      <select onChange={changeCardNumber} value={numberOfCards}>
-      <option value={maxCards}>{(maxCards) * 2}</option>
-        <option value={maxCards / 4 * 3}>{(maxCards / 4 * 3) * 2}</option>
-        <option value={maxCards / 2}>{(maxCards / 2) * 2}</option>
-        <option value={maxCards / 4}>{(maxCards / 4) * 2}</option>
-      </select>
-      <Button
-        handleClick={restartGame}
-        text="Restart Game"
-      />
-      <h2>Clicks: {props.clicks}</h2>
-      <h2>{bestGameText}</h2>
-      <div style={cardBoardStyle}>
+    <div className="game-board">
+      <h1 className="tempt-user">Color Memory</h1>
+      <div className="header-info">
+        <div className="header-info__scores">
+          <h2>Clicks: {props.clicks}</h2>
+          <h2>{bestGameText}</h2>
+        </div>
+        <div className="header-info__options">
+          <div className="header-info__text">
+            Number of Cards:
+            <select onChange={changeCardNumber} value={numberOfCards}>
+            <option value={maxCards}>{(maxCards) * 2}</option>
+              <option value={maxCards / 4 * 3}>{(maxCards / 4 * 3) * 2}</option>
+              <option value={maxCards / 2}>{(maxCards / 2) * 2}</option>
+              <option value={maxCards / 4}>{(maxCards / 4) * 2}</option>
+            </select>
+          </div>
+          <Button
+            handleClick={restartGame}
+            text="Restart Game"
+            classNames="button"
+          />
+        </div>
+      </div>
+      <div className="game-card-container">
         {cards}
       </div>
-      <h3>Perfect Game: {perfectGame}</h3>
+      <h3 className="center-text">Perfect Game: {perfectGame}</h3>
     </div>
   );
 }

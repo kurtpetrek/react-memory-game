@@ -6,12 +6,7 @@ export default function Card(props) {
   let index = props.index;
 
   const cardStyle = {
-    background: shownColor,
-    border: '3px solid black',
-    width: '100px',
-    height: '150px',
-    margin: '1rem',
-    borderRadius: '10px'
+    background: shownColor
   };
 
   function testCard(){
@@ -19,6 +14,10 @@ export default function Card(props) {
   }
 
   return (
-    <div style={cardStyle} onClick={testCard}></div>
+    <div
+      style={cardStyle}
+      onClick={testCard}
+      className="game-card"
+    ></div>
   )
 }

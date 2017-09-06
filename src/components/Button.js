@@ -1,15 +1,18 @@
 import React from 'react';
 
 export default function Button(props) {
-  const buttonStyle = {
-    padding: '.5rem',
-    borderRadius : '10px',
-    background: '#047DBF',
-    color: 'white',
-    fontSize: '1.4rem'
-  };
+
+  let {
+    classNames,
+    handleClick,
+    text
+  } = props;
+
+  if(Array.isArray(classNames)){
+    classNames = classNames.join(' ');
+  }
 
   return (
-    <button style={buttonStyle} onClick={props.handleClick}>{props.text}</button>
+    <button className={classNames} onClick={handleClick}>{text}</button>
   )
 }

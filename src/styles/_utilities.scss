@@ -1,0 +1,19 @@
+.center-text {
+  text-align: center;
+}
+
+.tempt-user {
+  animation: tempt-user infinite 15s alternate;
+}
+
+@keyframes tempt-user {
+  0%, 20%, 43%, 50%, 62%, 76%, 88%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  15%, 47%, 54%, 79%  {
+    transform: scale(1.03) rotate(8deg);
+  }
+  37%, 70%, 90% {
+    transform: scale(.96) rotate(-4deg);
+  }
+}
