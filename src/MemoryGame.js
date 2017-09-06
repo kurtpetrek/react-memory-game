@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import StartScreen from './StartScreen';
-import GameBoard from './GameBoard';
+import StartScreen from './components/StartScreen';
+import GameBoard from './components/GameBoard';
+import './App.css';
+
 
 export default class MemoryGame extends Component {
   constructor(){
