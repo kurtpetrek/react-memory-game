@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import Button from './Button';
 
 export default function GameBoard(props) {
   let {
@@ -19,7 +20,7 @@ export default function GameBoard(props) {
         flipped = true;
       }
     });
-    
+
     return (
       <Card
         flipped={flipped}
@@ -33,7 +34,15 @@ export default function GameBoard(props) {
 
   return (
     <div>
-      {cards}
+      <h1>Memory Patterns</h1>
+      <Button
+        handleClick={props.restartGame}
+        text="Restart Game"
+      />
+      <h2>Clicks: {props.clicks}</h2>
+      <div>
+        {cards}
+      </div>
     </div>
   );
 }

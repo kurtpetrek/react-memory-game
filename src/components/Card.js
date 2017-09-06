@@ -8,11 +8,11 @@ export default function Card(props) {
   const cardStyle = {
     background: shownColor,
     border: '3px solid black',
-    width: '150px',
-    height: '200px',
+    width: '100px',
+    height: '150px',
     float: 'left',
-    margin: '1rem 2rem',
-    borderRadius: '20px'
+    margin: '1rem',
+    borderRadius: '10px'
   };
 
   function testCard(){
