@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import StartScreen from './StartScreen';
 import GameBoard from './GameBoard';
-import Button from './Button';
 
 export default class MemoryGame extends Component {
   constructor(){
     super();
     this.state = {
-      startingCards: [
-        // 'url("https://www.transparenttextures.com/patterns/argyle.png")',
-        // 'url("https://www.transparenttextures.com/patterns/batthern.png")',
-        // 'url("https://www.transparenttextures.com/patterns/black-thread.png")',
-        // 'url("https://www.transparenttextures.com/patterns/bo-play.png")',
-        // 'url("https://www.transparenttextures.com/patterns/brick-wall-dark.png")',
-        // 'url("https://www.transparenttextures.com/patterns/cartographer.png")',
-        // 'url("https://www.transparenttextures.com/patterns/crissxcross.png")',
-        // 'url("https://www.transparenttextures.com/patterns/cubes.png")',
-        // 'url("https://www.transparenttextures.com/patterns/dark-exa.png")',
-        // 'url("https://www.transparenttextures.com/patterns/dimension.png")'
-        'red', 'green', 'blue', 'purple'
+      allCards: [
+        'red', 'green', 'blue', 'purple', 'pink', 'yellow', 'orange', 'teal', '#00D8FF', '#12252F', '#417797', '#5D6771'
       ],
+      startingCards: [],
+      numberOfCards: 10,
       playingCards: [],
       selectedCards: [],
       matchedCards: [],
@@ -38,13 +29,15 @@ export default class MemoryGame extends Component {
       	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       	return o;
       };
+      prevState.startingCards = [...prevState.allCards, ...prevState.allCards].slice(0, prevState.numberOfCards);
+      prevState.numberOfCards = prevState.startingCards.length;
       prevState.playing = true;
       prevState.canPickCard = true;
+      prevState.numberOfCards = prevState.startingCards.length;
       prevState.playingCards = [...prevState.startingCards, ...prevState.startingCards];
       prevState.matchedCards = [];
       prevState.clicks = 0;
       prevState.perfectGame = prevState.playingCards.length;
-      console.log(prevState.perfectGame);
       Shuffle(prevState.playingCards);
       return prevState;
     });
@@ -112,6 +105,16 @@ export default class MemoryGame extends Component {
     }
   };
 
+  changeNumberOfCards = (newNumberofCards) => {
+    if (newNumberofCards !== this.state.numberOfCards) {
+      this.setState(function(prevState){
+        prevState.numberOfCards = newNumberofCards;
+        prevState.bestGame = null;
+        return prevState;
+      }, this.startGame)
+    }
+  };
+
   render(){
     if (!this.state.playing) {
       return (
@@ -127,6 +130,11 @@ export default class MemoryGame extends Component {
           handleCardClick={this.onCardClick}
           restartGame={this.startGame}
           clicks={this.state.clicks}
+          bestGame={this.state.bestGame}
+          perfectGame={this.state.perfectGame}
+          handleNumberOfCardsChange={this.changeNumberOfCards}
+          numberOfCards={this.state.numberOfCards}
+          maxCards={this.state.allCards.length}
         />
       )
     }

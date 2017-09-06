@@ -10,7 +10,6 @@ export default function Card(props) {
     border: '3px solid black',
     width: '100px',
     height: '150px',
-    float: 'left',
     margin: '1rem',
     borderRadius: '10px'
   };
