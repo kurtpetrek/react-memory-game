@@ -20,10 +20,14 @@ export default class MemoryGame extends Component {
         '#545775',
         '#72B01D',
         '#283845',
-        '#F29559'
+        '#ABA361',
+        '#F84AA7',
+        '#B0CA87',
+        '#27FB6B',
+        '#51291E'
       ],
       startingCards: [],
-      numberOfCards: 10,
+      numberOfCards: 12,
       playingCards: [],
       selectedCards: [],
       matchedCards: [],
@@ -32,7 +36,8 @@ export default class MemoryGame extends Component {
       clicks: 0,
       bestGame: null,
       perfectGame: null,
-      hasWonGame: false
+      hasWonGame: false,
+      newHighScore: false
     };
   }
 
@@ -51,6 +56,8 @@ export default class MemoryGame extends Component {
       prevState.matchedCards = [];
       prevState.clicks = 0;
       prevState.perfectGame = prevState.playingCards.length;
+      prevState.hasWonGame = false;
+      prevState.newHighScore = false;
       Shuffle(prevState.playingCards);
       return prevState;
     });
@@ -99,6 +106,7 @@ export default class MemoryGame extends Component {
         if (prevState.matchedCards.length >= prevState.playingCards.length / 2 ) {
           if (prevState.bestGame === null) {
             prevState.bestGame = prevState.clicks;
+            prevState.newHighScore = true;
             console.log('High Score!');
           } else if (prevState.bestGame > prevState.clicks) {
             prevState.bestGame = prevState.clicks;
