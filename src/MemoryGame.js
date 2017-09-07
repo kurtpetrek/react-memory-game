@@ -127,6 +127,7 @@ export default class MemoryGame extends Component {
             prevState.newHighScore = true;
           } else if (prevState.bestGame > prevState.clicks) {
             prevState.bestGame = prevState.clicks;
+            prevState.newHighScore = true;
           }
           window.scrollTo(0, 0);
           prevState.hasWonGame = true;

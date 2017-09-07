@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Card(props) {
   let shownColor = props.flipped ? props.color : "white";
-  let animated = props.flipped ? null : "tempt-user--reverse";
+  let animated = props.flipped ? null : "tempt-user--shadow";
   let cardColor = props.color;
   let index = props.index;
 
