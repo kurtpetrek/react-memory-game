@@ -63,6 +63,7 @@ export default class MemoryGame extends Component {
         ...prevState.startingCards
       ];
       prevState.matchedCards = [];
+      prevState.selectedCards = [];
       prevState.clicks = 0;
       prevState.perfectGame = prevState.playingCards.length;
       prevState.hasWonGame = false;
@@ -82,7 +83,11 @@ export default class MemoryGame extends Component {
 
   onCardClick = (color, index) => {
     let cardHasAlreadyBeenMatched = this.state.matchedCards.includes(color);
-    if (!cardHasAlreadyBeenMatched && this.state.canPickCard) {
+    let cardHasAlreadyBeenClicked = false;
+    if (this.state.selectedCards.length === 1 && this.state.selectedCards[0].index === index) {
+      cardHasAlreadyBeenClicked = true;
+    }
+    if (!cardHasAlreadyBeenMatched && this.state.canPickCard && !cardHasAlreadyBeenClicked) {
       this.setState(
         function(prevState) {
           const selectedCard = {

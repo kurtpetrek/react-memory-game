@@ -9,6 +9,7 @@
   cursor: pointer;
   box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.3);
   transition: .25s;
+  will-change: transform;
 
   &:hover {
     transform: scale(1.05);
