@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StartScreen from "./components/StartScreen";
 import GameBoard from "./components/GameBoard";
+import MultiColoredHeader from './components/MultiColoredHeader';
 import "./App.css";
 
 export default class MemoryGame extends Component {
@@ -12,8 +13,8 @@ export default class MemoryGame extends Component {
         "#87F5FB",
         "#C09BD8",
         "#EBC3DB",
-        "#F6FEAA",
         "#C7DFC5",
+        "#F6FEAA",
         "#EE964B",
         "#718F94",
         "#545775",
@@ -163,22 +164,25 @@ export default class MemoryGame extends Component {
       return <StartScreen startGame={this.startGame} />;
     } else {
       return (
-        <GameBoard
-          playingCards={this.state.playingCards}
-          selectedCards={this.state.selectedCards}
-          matchedCards={this.state.matchedCards}
-          goToStartScreen={this.goToStartScreen}
-          handleCardClick={this.onCardClick}
-          restartGame={this.startGame}
-          clicks={this.state.clicks}
-          bestGame={this.state.bestGame}
-          perfectGame={this.state.perfectGame}
-          handleNumberOfCardsChange={this.changeNumberOfCards}
-          numberOfCards={this.state.numberOfCards}
-          maxCards={this.state.allCards.length}
-          hasWonGame={this.state.hasWonGame}
-          newHighScore={this.state.newHighScore}
-        />
+        <div>
+          <MultiColoredHeader text="Color Memory!" colors={this.state.allCards}/>
+          <GameBoard
+            playingCards={this.state.playingCards}
+            selectedCards={this.state.selectedCards}
+            matchedCards={this.state.matchedCards}
+            goToStartScreen={this.goToStartScreen}
+            handleCardClick={this.onCardClick}
+            restartGame={this.startGame}
+            clicks={this.state.clicks}
+            bestGame={this.state.bestGame}
+            perfectGame={this.state.perfectGame}
+            handleNumberOfCardsChange={this.changeNumberOfCards}
+            numberOfCards={this.state.numberOfCards}
+            maxCards={this.state.allCards.length}
+            hasWonGame={this.state.hasWonGame}
+            newHighScore={this.state.newHighScore}
+          />
+        </div>
       );
     }
   }

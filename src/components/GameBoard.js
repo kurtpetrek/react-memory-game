@@ -57,7 +57,6 @@ export default function GameBoard(props) {
 
   return (
     <div className="game-board">
-      <h1>Color Memory</h1>
       {hasWonGameText}
       {newHighScoreText}
       <div className="header-info">
