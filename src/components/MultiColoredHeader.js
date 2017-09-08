@@ -1,14 +1,20 @@
 import React from 'react';
 
 export default function MultiColoredHeader(props) {
-  var text = props.text.split('');
-  var newText = [];
+  function getRandomArbitrary(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+
+  let text = props.text.split('');
+  let newText = [];
+
   text.forEach(function(x, index){
     if (x === ' ') {
       newText.push(' ');
     } else {
+      let color = props.colors[index] ? props.colors[index] : '#' + getRandomArbitrary(100000, 999999)
       let style = {
-        color: props.colors[index],
+        color: color,
         display: 'inline-block',
       }
       newText.push(<span
@@ -19,17 +25,59 @@ export default function MultiColoredHeader(props) {
         </span>);
     }
   });
-  let splitPoint = newText.indexOf(' ');
-  let partOne = newText.slice(0, splitPoint);
-  let partTwo = newText.slice(splitPoint, newText.length);
-  return (
-    <h1>
-      <span style={{display: 'inline-block'}}>
-        {partOne}
-      </span>
-      <span style={{display: 'inline-block', marginLeft: '1rem'}}>
-        {partTwo}
-      </span>
-    </h1>
-  )
+
+  function testArrayForSpaces(arr) {
+    let containsSpaces = false;
+    let spaceIndexes = [];
+
+    arr.forEach((item, index) => {
+      if (item === ' ') {
+        spaceIndexes.push(index);
+        containsSpaces = true;
+      }
+    });
+
+    if (containsSpaces) {
+      return spaceIndexes;
+    } else {
+      return false;
+    }
+  }
+
+  let containsSpaces = testArrayForSpaces(newText);
+
+  if (!containsSpaces) {
+    return (
+      <h1>{newText}</h1>
+    )
+  } else {
+    let finalContent = containsSpaces.map((item, index, arr) => {
+      var startingPoint = 0;
+      if (index > 0) {
+        startingPoint = arr[index - 1];
+      }
+
+      if (index === arr.length -1) {
+        return (
+          <span key={'color-header-span' + index}>
+            <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+              {newText.slice(startingPoint, item)}
+            </span>
+            <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+              {newText.slice(item, newText.length - 1)}
+            </span>
+          </span>
+        )
+      } else {
+        return (
+          <span style={{display: 'inline-block', marginLeft: '1rem'}} key={'color-header-span' + index}>
+            {newText.slice(startingPoint, item)}
+          </span>
+          )
+      }
+    });
+    return (
+      <h1>{finalContent}</h1>
+    )
+  }
 }
