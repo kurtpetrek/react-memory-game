@@ -70,7 +70,7 @@ export default class MultiColoredHeader extends React.Component {
                 {newText.slice(startingPoint, item)}
               </span>
               <span style={{display: 'inline-block', marginLeft: '1rem'}}>
-                {newText.slice(item, newText.length - 1)}
+                {newText.slice(item, newText.length)}
               </span>
             </span>
           )
