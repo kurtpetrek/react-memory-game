@@ -165,7 +165,7 @@ export default class MemoryGame extends Component {
     } else {
       return (
         <div>
-          <MultiColoredHeader text="Color Memory game game game!" colors={this.state.allCards}/>
+          <MultiColoredHeader text="Color Memory!" colors={this.state.allCards}/>
           <GameBoard
             playingCards={this.state.playingCards}
             selectedCards={this.state.selectedCards}

@@ -1,83 +1,94 @@
 import React from 'react';
 
-export default function MultiColoredHeader(props) {
-  function getRandomArbitrary(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
+export default class MultiColoredHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.content = this.getContent(props);
   }
 
-  let text = props.text.split('');
-  let newText = [];
-
-  text.forEach(function(x, index){
-    if (x === ' ') {
-      newText.push(' ');
-    } else {
-      let color = props.colors[index] ? props.colors[index] : '#' + getRandomArbitrary(100000, 999999)
-      let style = {
-        color: color,
-        display: 'inline-block',
-      }
-      newText.push(<span
-          style={style}
-          key={x+style.color}
-          className="hue-rotation-animation">
-          {x}
-        </span>);
+  getContent = (props) => {
+    function getRandomArbitrary(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
     }
-  });
 
-  function testArrayForSpaces(arr) {
-    let containsSpaces = false;
-    let spaceIndexes = [];
+    let text = props.text.split('');
+    let newText = [];
 
-    arr.forEach((item, index) => {
-      if (item === ' ') {
-        spaceIndexes.push(index);
-        containsSpaces = true;
+    text.forEach(function(x, index){
+      if (x === ' ') {
+        newText.push(' ');
+      } else {
+        let color = props.colors[index] ? props.colors[index] : '#' + getRandomArbitrary(100000, 999999)
+        let style = {
+          color: color,
+          display: 'inline-block',
+        }
+        newText.push(<span
+            style={style}
+            key={x+style.color}
+            className="hue-rotation-animation">
+            {x}
+          </span>);
       }
     });
 
-    if (containsSpaces) {
-      return spaceIndexes;
-    } else {
-      return false;
-    }
-  }
+    function testArrayForSpaces(arr) {
+      let containsSpaces = false;
+      let spaceIndexes = [];
 
-  let containsSpaces = testArrayForSpaces(newText);
+      arr.forEach((item, index) => {
+        if (item === ' ') {
+          spaceIndexes.push(index);
+          containsSpaces = true;
+        }
+      });
 
-  if (!containsSpaces) {
-    return (
-      <h1>{newText}</h1>
-    )
-  } else {
-    let finalContent = containsSpaces.map((item, index, arr) => {
-      var startingPoint = 0;
-      if (index > 0) {
-        startingPoint = arr[index - 1];
+      if (containsSpaces) {
+        return spaceIndexes;
+      } else {
+        return false;
       }
+    }
 
-      if (index === arr.length -1) {
-        return (
-          <span key={'color-header-span' + index}>
-            <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+    let containsSpaces = testArrayForSpaces(newText);
+
+    if (!containsSpaces) {
+      return (
+        <h1>{newText}</h1>
+      )
+    } else {
+      let finalContent = containsSpaces.map((item, index, arr) => {
+        var startingPoint = 0;
+        if (index > 0) {
+          startingPoint = arr[index - 1];
+        }
+
+        if (index === arr.length -1) {
+          return (
+            <span key={'color-header-span' + index}>
+              <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+                {newText.slice(startingPoint, item)}
+              </span>
+              <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+                {newText.slice(item, newText.length - 1)}
+              </span>
+            </span>
+          )
+        } else {
+          return (
+            <span style={{display: 'inline-block', marginLeft: '1rem'}} key={'color-header-span' + index}>
               {newText.slice(startingPoint, item)}
             </span>
-            <span style={{display: 'inline-block', marginLeft: '1rem'}}>
-              {newText.slice(item, newText.length - 1)}
-            </span>
-          </span>
-        )
-      } else {
-        return (
-          <span style={{display: 'inline-block', marginLeft: '1rem'}} key={'color-header-span' + index}>
-            {newText.slice(startingPoint, item)}
-          </span>
-          )
-      }
-    });
-    return (
-      <h1>{finalContent}</h1>
-    )
+            )
+        }
+      });
+      return (
+        <h1>{finalContent}</h1>
+      )
+    }
+  }
+
+  render() {
+    return this.content;
   }
 }
