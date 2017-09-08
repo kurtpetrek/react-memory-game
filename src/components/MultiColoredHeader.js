@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default function MultiColoredHeader(props) {
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
 
   var text = props.text.split('');
   var newText = [];
@@ -13,7 +10,6 @@ export default function MultiColoredHeader(props) {
     } else {
       let style = {
         color: props.colors[index],
-        // animationDelay: getRandomArbitrary(0, 3) * -1 + 's',
         display: 'inline-block',
       }
       newText.push(<span
@@ -24,7 +20,6 @@ export default function MultiColoredHeader(props) {
         </span>);
     }
   });
-
   return (
     <h1>{newText}</h1>
   )
