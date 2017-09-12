@@ -18,7 +18,7 @@ export default class MultiColoredHeader extends React.Component {
       if (x === ' ') {
         newText.push(' ');
       } else {
-        let color = props.colors[index] ? props.colors[index] : '#' + getRandomArbitrary(100000, 999999)
+        let color = props.colors[index] ? props.colors[index] : `rgb(${getRandomArbitrary(0, 255)}, ${getRandomArbitrary(0, 255)}, ${getRandomArbitrary(0, 255)})`;
         let style = {
           color: color,
           display: 'inline-block',
