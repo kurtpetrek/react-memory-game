@@ -24,7 +24,7 @@ export default function GameBoard(props) {
   }
 
   let hasWonGameText = hasWonGame ? (
-    <h2 className="center-text won-game-text">You Won!</h2>
+    <h2 className="center-text won-game-text">You Win!</h2>
   ) : null;
   let newHighScoreText = newHighScore ? (
     <h2 className="center-text new-high-score-text">New High Score!</h2>

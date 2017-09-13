@@ -44,10 +44,10 @@
 @keyframes hue-rotation-animation {
   0% {
     filter: hue-rotate(0deg);
-    transform: rotate(-5deg);
+    // transform: rotate(-5deg);
   }
   100% {
-    filter: hue-rotate(180deg);
-    transform: rotate(5deg);
+    filter: hue-rotate(360deg);
+    // transform: rotate(5deg);
   }
 }
