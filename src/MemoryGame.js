@@ -105,7 +105,11 @@ export default class MemoryGame extends Component {
         },
         () => {
           if (this.state.selectedCards.length === 2) {
-            setTimeout(this.testSelectedCards, 1000);
+            setTimeout(()=>{
+              if (this.state.selectedCards.length === 2) {
+                this.testSelectedCards()
+              }
+            }, 1000);
           }
         }
       );
@@ -113,42 +117,40 @@ export default class MemoryGame extends Component {
   };
 
   testSelectedCards = () => {
-    if (this.state.selectedCards.length === 2) {
-      let cardsMatch = false;
-      if (
-        this.state.selectedCards[0].color === this.state.selectedCards[1].color &&
-        this.state.selectedCards[0].index !== this.state.selectedCards[1].index
-      ) {
-        cardsMatch = true;
-      }
-      if (cardsMatch) {
-        this.setState(prevState => {
-          prevState.matchedCards.push(prevState.selectedCards[0].color);
-          prevState.selectedCards = [];
-          prevState.canPickCard = true;
-          if (
-            prevState.matchedCards.length >=
-            prevState.playingCards.length / 2
-          ) {
-            if (prevState.bestGame === null) {
-              prevState.bestGame = prevState.clicks;
-              prevState.newHighScore = true;
-            } else if (prevState.bestGame > prevState.clicks) {
-              prevState.bestGame = prevState.clicks;
-              prevState.newHighScore = true;
-            }
-            window.scrollTo(0, 0);
-            prevState.hasWonGame = true;
+    let cardsMatch = false;
+    if (
+      this.state.selectedCards[0].color === this.state.selectedCards[1].color &&
+      this.state.selectedCards[0].index !== this.state.selectedCards[1].index
+    ) {
+      cardsMatch = true;
+    }
+    if (cardsMatch) {
+      this.setState(prevState => {
+        prevState.matchedCards.push(prevState.selectedCards[0].color);
+        prevState.selectedCards = [];
+        prevState.canPickCard = true;
+        if (
+          prevState.matchedCards.length >=
+          prevState.playingCards.length / 2
+        ) {
+          if (prevState.bestGame === null) {
+            prevState.bestGame = prevState.clicks;
+            prevState.newHighScore = true;
+          } else if (prevState.bestGame > prevState.clicks) {
+            prevState.bestGame = prevState.clicks;
+            prevState.newHighScore = true;
           }
-          return prevState;
-        });
-      } else {
-        this.setState(prevState => {
-          prevState.selectedCards = [];
-          prevState.canPickCard = true;
-          return prevState;
-        });
-      }
+          window.scrollTo(0, 0);
+          prevState.hasWonGame = true;
+        }
+        return prevState;
+      });
+    } else {
+      this.setState(prevState => {
+        prevState.selectedCards = [];
+        prevState.canPickCard = true;
+        return prevState;
+      });
     }
   };
 
