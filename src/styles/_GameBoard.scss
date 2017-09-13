@@ -35,6 +35,7 @@
   flex-wrap: wrap;
   max-width: 1200px;
   margin: auto;
+  perspective: 800px;
 }
 
 .game-card {
@@ -43,6 +44,35 @@
   height: 80px;
   margin: .5rem;
   border-radius: 10px;
+
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+
+  &__front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    transform: rotateY( 180deg );
+  }
+
+  &__back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+
+  }
+
+  &.game-card--flipped {
+    transform: rotateY( 180deg );
+  }
 }
 
 @media (min-width: 500px) {

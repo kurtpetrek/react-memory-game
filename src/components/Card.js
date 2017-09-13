@@ -1,25 +1,29 @@
 import React from "react";
 
 export default function Card(props) {
-  let shownColor = props.flipped ? props.color : "white";
-  let animated = props.flipped ? null : "tempt-user--shadow";
+  let cardFlipped = props.flipped ? 'game-card--flipped' : null;
   let cardColor = props.color;
   let index = props.index;
-
-  const cardStyle = {
-    background: shownColor,
-    animationDelay: Math.random() * -1 + "s"
-  };
 
   function testCard() {
     props.clickHandler(cardColor, index);
   }
 
   return (
-    <div
-      style={cardStyle}
-      onClick={testCard}
-      className={"game-card " + animated}
-    />
+    <div className={"game-card " + cardFlipped} onClick={testCard}>
+      <div
+        className="game-card__back"
+        style={{
+          background: 'white'
+        }}
+      />
+      <div
+        className="game-card__front"
+        style={{
+          background: cardColor
+        }}
+      />
+    </div>
+
   );
 }
