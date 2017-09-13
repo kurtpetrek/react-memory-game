@@ -84,6 +84,7 @@
 
   &__front {
     transform: translate(-50%, -50%) rotateY( 180deg);
+    filter: blur(1px);
   }
 
   &.game-card--flipped {
