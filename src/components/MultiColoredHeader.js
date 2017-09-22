@@ -63,21 +63,27 @@ export default class MultiColoredHeader extends React.Component {
           startingPoint = arr[index - 1];
         }
 
-        if (index === arr.length -1) {
+        if (index === arr.length - 1) {
           return (
             <span key={'color-header-span' + index}>
-              <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+              <span style={{display: 'inline-block'}}>
                 {newText.slice(startingPoint, item)}
               </span>
-              <span style={{display: 'inline-block', marginLeft: '1rem'}}>
+              <span> </span>
+              <span style={{display: 'inline-block'}}>
                 {newText.slice(item, newText.length)}
               </span>
             </span>
           )
         } else {
           return (
-            <span style={{display: 'inline-block', marginLeft: '1rem'}} key={'color-header-span' + index}>
-              {newText.slice(startingPoint, item)}
+            <span>
+              <span>
+                <span style={{display: 'inline-block', marginLeft: '1rem'}} key={'color-header-span' + index}>
+                  {newText.slice(startingPoint, item)}
+                </span>
+              </span>
+              <span> </span>
             </span>
             )
         }
