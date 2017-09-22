@@ -61,8 +61,8 @@ export default function GameBoard(props) {
       {newHighScoreText}
       <div className="header-info">
         <div className="header-info__scores">
-          <h2>Clicks: {props.clicks}</h2>
-          <h2>{bestGameText}</h2>
+          <p>Flips: {props.clicks}</p>
+          <p>{bestGameText}</p>
         </div>
         <div className="header-info__options">
           <div className="header-info__text">

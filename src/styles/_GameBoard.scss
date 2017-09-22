@@ -7,6 +7,7 @@
 
 .header-info {
   display: flex;
+  font-size: 1.25rem;
 
   &__scores, &__options {
     width: 50%;
@@ -21,8 +22,8 @@
 
   &__text {
     margin: 1rem 0;
-    font-size: 1.2rem;
-    font-weight: bold;
+    text-align: right;
+    // font-weight: bold;
 
     select {
       margin-left: 5px;
