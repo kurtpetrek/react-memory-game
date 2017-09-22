@@ -12,7 +12,18 @@ html {
 h1 {
   font-family: 'Righteous', cursive;
   text-align: center;
-  font-size: 4rem;
+  font-size: 5rem;
   padding: .3rem;
   margin: 1.5rem 0;
+}
+
+@supports (-webkit-text-stroke: 1px white) {
+  h1 {
+    -webkit-text-stroke: 1px white;
+    text-shadow: 1px 1px 0px,
+                  2px 2px 0px,
+                  3px 3px 0px,
+                  4px 4px 0px,
+                  5px 5px 0px;
+  }
 }

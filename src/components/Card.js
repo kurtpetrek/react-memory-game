@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Card(props) {
-  let cardFlipped = props.flipped ? 'game-card--flipped' : null;
+  let cardFlipped = props.flipped ? 'game-card--flipped' : '';
   let cardColor = props.color;
   let index = props.index;
 
